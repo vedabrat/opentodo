@@ -1,9 +1,16 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :name
+  attributes :id, :name, :username
 
-def email
-  object.email
-end
+  def name
+    object.name
+  end
 
+  def username
+    object.username
+  end
+
+  def id
+    object.id
+  end
 
 end
