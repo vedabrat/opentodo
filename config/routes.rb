@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  root 'welcome#index'
-  get 'welcome/index'
   resources :lists
-
-  get 'welcome/about'
-
+  namespace :api, defaults: { format: :json } do
+    resources :users
+  end
 end

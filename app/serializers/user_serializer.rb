@@ -1,8 +1,16 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :username
+  attributes :id, :name, :username, :password, :list_titles
+
+  def list_titles
+    object.list_titles
+  end
 
   def name
     object.name
+  end
+
+  def password
+    "#{object.name.downcase}_password"
   end
 
   def username
@@ -12,5 +20,4 @@ class UserSerializer < ActiveModel::Serializer
   def id
     object.id
   end
-
 end
