@@ -32,16 +32,12 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
-    @list = List.new(list_params)
-
-    respond_to do |format|
-      if @list.save
-        format.html { redirect_to @list, notice: 'List was successfully created.' }
-        format.json { render json: @list, status: :created }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @list.errors, status: :unprocessable_entity }
-      end
+  # list = user.lists.new(list_params)
+    if list.save
+      render json: list
+    else
+      render json: { errors: list.errors.full_messages },
+      status: :unprocessable_entity
     end
   end
 
