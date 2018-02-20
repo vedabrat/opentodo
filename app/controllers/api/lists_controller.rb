@@ -10,7 +10,19 @@ class ListsController < ApplicationController
       status: :unprocessable_entity
     end
   end
-  
+
+  def destroy
+    begin
+      list = current_user.lists.find(params[:id])
+      list.destroy
+      # HTTP 204 No Content: server successfully processed the request but isn't returning content.
+      render json: {}, status: :no_content
+    rescue ActiveRecord::RecordNotFound
+      render :json => {}, :status => :not_found
+    end
+  end
+
+
   private
 
   def list_params
