@@ -23,8 +23,6 @@ class API::ItemsController < ApplicationController
     end
   end
 
-
-
   def destroy
     begin
       @item = Item.find(params[:id])

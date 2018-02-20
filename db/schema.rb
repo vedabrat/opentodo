@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208135807) do
+ActiveRecord::Schema.define(version: 20180220202043) do
 
   create_table "add_items_to_lists", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -33,11 +33,12 @@ ActiveRecord::Schema.define(version: 20180208135807) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.integer  "list_id"
     t.string   "description"
-    t.boolean  "completed"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "list_id"
+    t.boolean  "completed",   default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "status",      default: "incomplete"
   end
 
   add_index "items", ["list_id"], name: "index_items_on_list_id"
