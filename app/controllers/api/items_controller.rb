@@ -11,6 +11,20 @@ class API::ItemsController < ApplicationController
     end
   end
 
+  def update
+    # item = current_user.lists.find(params[:id]).items.find(params[:id])
+    @item = Item.find(params[:id])
+    raise unless @item.list.user == current_user
+    if list.update(list_params)
+      render json: list
+    else
+      render json: { errors: list.errors.full_messages },
+      status: :unprocessable_entity
+    end
+  end
+
+
+
   def destroy
     begin
       @item = Item.find(params[:id])
