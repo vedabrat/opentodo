@@ -1,5 +1,9 @@
 class ListsController < ApplicationController
   before_action :authenticated?
+  def index
+    lists = current_user.lists
+    render json: lists, each_serializer: ListSerializer
+  end
 
   def create
     list = current_user.lists.build(list_params)
