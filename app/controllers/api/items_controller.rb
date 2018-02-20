@@ -16,14 +16,13 @@ class API::ItemsController < ApplicationController
       @item = Item.find(params[:id])
       raise unless @item.list.user == current_user
       @item.destroy
-      # render HTTP 204 No Content to indicate the server successfully
-      # processed the request but isn't returning any content
+      # render HTTP 204 No Content: server processed the request but no content
       render json: {}, status: :no_content
     rescue ActiveRecord::RecordNotFound
       render :json => {}, :status => :not_found
     end
   end
-  
+
   private
 
   def item_params
